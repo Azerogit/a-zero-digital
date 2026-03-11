@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-body text-text-primary bg-white antialiased;
+    margin: 0;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+}
+
+/* ─── Keyframe animations ──────────────────────────────── */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes columnReveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ─── Scroll-reveal utility ──────────────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Dual-range slider ──────────────────────────────── */
+
+.range-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+  background: transparent;
+  pointer-events: none;
+}
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #0052FF;
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 0 1px #0052FF, 0 2px 6px rgba(0, 82, 255, 0.3);
+  cursor: pointer;
+  pointer-events: all;
+  transition: box-shadow 0.15s ease;
+}
+
+.range-slider::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 0 1px #0052FF, 0 4px 12px rgba(0, 82, 255, 0.4);
+}
+
+.range-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #0052FF;
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 0 1px #0052FF, 0 2px 6px rgba(0, 82, 255, 0.3);
+  cursor: pointer;
+  pointer-events: all;
+}
+
+/* ─── Custom checkbox ──────────────────────────────── */
+
+.checkbox-custom {
+  accent-color: #0052FF;
+}
