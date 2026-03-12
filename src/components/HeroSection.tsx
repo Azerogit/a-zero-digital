@@ -84,13 +84,10 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Bottom fade to white */}
+      {/* Bottom fade to page background */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none hero-fade"
         aria-hidden="true"
-        style={{
-          background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.8))',
-        }}
       />
     </section>
   )

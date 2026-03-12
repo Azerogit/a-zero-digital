@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Sun, Moon } from 'lucide-react'
 
 interface NavbarProps {
   activeSection: string
+  onThemeToggle: () => void
+  currentTheme: 'light' | 'dark'
 }
 
 const navLinks = [
@@ -13,7 +15,7 @@ const navLinks = [
   { label: 'Contact', href: '#contact' },
 ]
 
-export default function Navbar({ activeSection }: NavbarProps) {
+export default function Navbar({ activeSection, onThemeToggle, currentTheme }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
   const [drawerOpen, setDrawerOpen] = useState(false)
 
@@ -27,7 +29,7 @@ export default function Navbar({ activeSection }: NavbarProps) {
 
   return (
     <header
-      className={`sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-surface-border transition-shadow duration-200 ${
+      className={`sticky top-0 z-50 navbar-glass backdrop-blur-md border-b border-surface-border transition-shadow duration-300 ${
         scrolled ? 'shadow-sm' : ''
       }`}
     >
@@ -60,29 +62,58 @@ export default function Navbar({ activeSection }: NavbarProps) {
             })}
           </ul>
 
-          {/* Desktop CTA */}
-          <a
-            href="#contact"
-            className="hidden md:inline-flex items-center justify-center bg-brand-blue text-text-inverse font-body font-medium rounded-pill px-6 py-3 text-sm hover:opacity-90 active:scale-95 transition-all duration-150"
-          >
-            Get Started
-          </a>
+          {/* Desktop right controls */}
+          <div className="hidden md:flex items-center gap-3">
+            {/* Theme toggle */}
+            <button
+              onClick={onThemeToggle}
+              className="rounded-full p-2 bg-surface-card border border-surface-border hover:bg-surface-elevated transition-colors duration-200"
+              aria-label="Toggle theme"
+            >
+              {currentTheme === 'dark' ? (
+                <Sun className="w-5 h-5 text-text-primary" aria-hidden="true" />
+              ) : (
+                <Moon className="w-5 h-5 text-text-primary" aria-hidden="true" />
+              )}
+            </button>
 
-          {/* Mobile hamburger */}
-          <button
-            className="md:hidden flex items-center justify-center w-10 h-10 text-text-primary"
-            onClick={() => setDrawerOpen((v) => !v)}
-            aria-label={drawerOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={drawerOpen}
-          >
-            {drawerOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            {/* CTA */}
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center bg-brand-blue text-text-inverse font-body font-medium rounded-pill px-6 py-3 text-sm hover:opacity-90 active:scale-95 transition-all duration-150"
+            >
+              Get Started
+            </a>
+          </div>
+
+          {/* Mobile: theme toggle + hamburger */}
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={onThemeToggle}
+              className="rounded-full p-2 bg-surface-card border border-surface-border hover:bg-surface-elevated transition-colors duration-200"
+              aria-label="Toggle theme"
+            >
+              {currentTheme === 'dark' ? (
+                <Sun className="w-5 h-5 text-text-primary" aria-hidden="true" />
+              ) : (
+                <Moon className="w-5 h-5 text-text-primary" aria-hidden="true" />
+              )}
+            </button>
+            <button
+              className="flex items-center justify-center w-10 h-10 text-text-primary"
+              onClick={() => setDrawerOpen((v) => !v)}
+              aria-label={drawerOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={drawerOpen}
+            >
+              {drawerOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </nav>
       </div>
 
       {/* Mobile drawer */}
       {drawerOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md border-b border-surface-border shadow-sm">
+        <div className="md:hidden absolute top-full left-0 right-0 drawer-glass backdrop-blur-md border-b border-surface-border shadow-sm">
           <ul className="flex flex-col px-4 py-4 gap-1" role="list">
             {navLinks.map((link) => {
               const isActive = activeHref === link.href

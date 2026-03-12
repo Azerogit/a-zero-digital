@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
-import { colors } from '../tokens/colors'
 
 interface FormData {
   name: string
@@ -39,12 +38,12 @@ function buildSliderBackground(min: number, max: number) {
   const lo = pct(min)
   const hi = pct(max)
   return `linear-gradient(to right,
-    ${colors.surface.border} 0%,
-    ${colors.surface.border} ${lo}%,
-    ${colors.brand.blue} ${lo}%,
-    ${colors.brand.blue} ${hi}%,
-    ${colors.surface.border} ${hi}%,
-    ${colors.surface.border} 100%)`
+    var(--color-surface-border) 0%,
+    var(--color-surface-border) ${lo}%,
+    #0052FF ${lo}%,
+    #0052FF ${hi}%,
+    var(--color-surface-border) ${hi}%,
+    var(--color-surface-border) 100%)`
 }
 
 function Spinner() {

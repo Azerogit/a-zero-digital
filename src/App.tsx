@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { useScrollSpy } from './hooks/useScrollSpy'
+import { useTheme } from './hooks/useTheme'
 import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
 import ServicesSection from './components/ServicesSection'
@@ -38,6 +39,7 @@ const jsonLd = {
 
 export default function App() {
   const activeSection = useScrollSpy(SECTION_IDS)
+  const { theme, toggle } = useTheme()
 
   return (
     <>
@@ -45,7 +47,7 @@ export default function App() {
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
-      <Navbar activeSection={activeSection} />
+      <Navbar activeSection={activeSection} onThemeToggle={toggle} currentTheme={theme} />
 
       <main>
         <HeroSection />

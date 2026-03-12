@@ -59,7 +59,7 @@ export default function CtaSection() {
             </a>
             <a
               href="#contact"
-              className="bg-transparent border border-surface-border text-text-primary font-body font-medium rounded-pill px-8 py-4 text-base hover:bg-white active:scale-95 transition-all duration-150"
+              className="bg-transparent border border-surface-border text-text-primary font-body font-medium rounded-pill px-8 py-4 text-base hover:bg-surface-base active:scale-95 transition-all duration-150"
             >
               Free Consultation
             </a>

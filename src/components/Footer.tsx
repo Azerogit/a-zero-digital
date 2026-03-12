@@ -72,7 +72,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="flex items-center justify-center w-16 h-16 rounded-full border border-surface-border bg-white hover:bg-surface-card transition-colors duration-150"
+                  className="flex items-center justify-center w-16 h-16 rounded-full border border-surface-border bg-surface-base hover:bg-surface-card transition-colors duration-150"
                 >
                   <Icon size={20} className="text-text-secondary" aria-hidden="true" />
                 </a>

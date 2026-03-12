@@ -1,3 +1,33 @@
+/* ── LIGHT MODE (default) ── */
+:root {
+  --color-surface-base:     #FFFFFF;
+  --color-surface-card:     #F7F7F7;
+  --color-surface-elevated: #F0F0F0;
+  --color-surface-border:   #E6E6E6;
+  --color-surface-muted:    #FAFAFA;
+
+  --color-text-primary:   #0F0F0F;
+  --color-text-secondary: #4C4C4D;
+  --color-text-muted:     #808080;
+  --color-text-disabled:  #666666;
+  --color-text-inverse:   #FFFFFF;
+}
+
+/* ── DARK MODE ── */
+.dark {
+  --color-surface-base:     #0F0F0F;
+  --color-surface-card:     #1A1A1A;
+  --color-surface-elevated: #1F1F1F;
+  --color-surface-border:   #262626;
+  --color-surface-muted:    #1A1A1A;
+
+  --color-text-primary:   #FFFFFF;
+  --color-text-secondary: #E6E6E6;
+  --color-text-muted:     #8C8C8C;
+  --color-text-disabled:  #666666;
+  --color-text-inverse:   #0F0F0F;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,10 +35,11 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   body {
-    @apply font-body text-text-primary bg-white antialiased;
+    @apply font-body text-text-primary bg-surface-base antialiased;
     margin: 0;
   }
 
@@ -17,6 +48,20 @@
   *::after {
     box-sizing: border-box;
   }
+}
+
+/* ─── Glass / fade utilities (CSS vars can't use Tailwind opacity modifier) ── */
+
+.navbar-glass {
+  background-color: color-mix(in srgb, var(--color-surface-base) 80%, transparent);
+}
+
+.drawer-glass {
+  background-color: color-mix(in srgb, var(--color-surface-base) 95%, transparent);
+}
+
+.hero-fade {
+  background: linear-gradient(to bottom, transparent, var(--color-surface-base));
 }
 
 /* ─── Keyframe animations ──────────────────────────────── */
@@ -83,7 +128,7 @@
   height: 20px;
   border-radius: 50%;
   background: #0052FF;
-  border: 3px solid #ffffff;
+  border: 3px solid var(--color-surface-base);
   box-shadow: 0 0 0 1px #0052FF, 0 2px 6px rgba(0, 82, 255, 0.3);
   cursor: pointer;
   pointer-events: all;
@@ -99,7 +144,7 @@
   height: 20px;
   border-radius: 50%;
   background: #0052FF;
-  border: 3px solid #ffffff;
+  border: 3px solid var(--color-surface-base);
   box-shadow: 0 0 0 1px #0052FF, 0 2px 6px rgba(0, 82, 255, 0.3);
   cursor: pointer;
   pointer-events: all;

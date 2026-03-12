@@ -2,6 +2,7 @@ import type { Config } from 'tailwindcss'
 
 const config: Config = {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -10,18 +11,18 @@ const config: Config = {
           cyan: '#00D4FF',
         },
         surface: {
-          base: '#FFFFFF',
-          card: '#F7F7F7',
-          elevated: '#F0F0F0',
-          border: '#E0E0E0',
-          muted: '#FAFAFA',
+          base:     'var(--color-surface-base)',
+          card:     'var(--color-surface-card)',
+          elevated: 'var(--color-surface-elevated)',
+          border:   'var(--color-surface-border)',
+          muted:    'var(--color-surface-muted)',
         },
         text: {
-          primary: '#0F0F0F',
-          secondary: '#4A4A4A',
-          muted: '#717171',
-          disabled: '#999999',
-          inverse: '#FFFFFF',
+          primary:   'var(--color-text-primary)',
+          secondary: 'var(--color-text-secondary)',
+          muted:     'var(--color-text-muted)',
+          disabled:  'var(--color-text-disabled)',
+          inverse:   'var(--color-text-inverse)',
         },
       },
       fontFamily: {

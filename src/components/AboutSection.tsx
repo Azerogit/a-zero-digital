@@ -28,7 +28,7 @@ export default function AboutSection() {
   }, [])
 
   return (
-    <section id="about" className="py-24 bg-blue-50">
+    <section id="about" className="py-24 bg-blue-50 dark:bg-surface-card">
       <div ref={ref} className="max-w-container mx-auto px-4 md:px-8 xl:px-16">
         <div className="max-w-4xl">
           {/* Heading */}
@@ -60,7 +60,7 @@ export default function AboutSection() {
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="bg-white border border-surface-border rounded-tag shadow-sm px-4 py-3 font-body text-sm text-text-secondary backdrop-blur-sm"
+                className="bg-surface-base border border-surface-border rounded-tag shadow-sm px-4 py-3 font-body text-sm text-text-secondary backdrop-blur-sm"
               >
                 {tag}
               </span>

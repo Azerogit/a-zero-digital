@@ -84,15 +84,15 @@ export default function ProcessSection() {
                 <div className="flex flex-col items-center text-center px-8 py-12">
                   {/* Triple-ring icon */}
                   <div
-                    className="flex items-center justify-center rounded-full border-2 border-surface-border bg-white mb-6"
+                    className="flex items-center justify-center rounded-full border-2 border-surface-border bg-surface-base mb-6"
                     style={{ width: 88, height: 88 }}
                   >
                     <div
-                      className="flex items-center justify-center rounded-full border-2 border-surface-border bg-white"
+                      className="flex items-center justify-center rounded-full border-2 border-surface-border bg-surface-base"
                       style={{ width: 64, height: 64 }}
                     >
                       <div
-                        className="flex items-center justify-center rounded-full border-2 border-surface-border bg-white"
+                        className="flex items-center justify-center rounded-full border-2 border-surface-border bg-surface-base"
                         style={{ width: 44, height: 44 }}
                       >
                         <Icon size={22} className="text-brand-blue" strokeWidth={1.75} aria-hidden="true" />
