@@ -10,7 +10,7 @@ interface PageHeroProps {
 export default function PageHero({ label, title, subtitle, centered = true }: PageHeroProps) {
   return (
     <section
-      className={`pt-32 pb-16 border-b border-az-border/20 ${centered ? 'text-center' : ''}`}
+      className={`pt-20 md:pt-32 pb-12 md:pb-16 border-b border-az-border/20 ${centered ? 'text-center' : ''}`}
       aria-label={`${label} page hero`}
     >
       <div className="max-w-container mx-auto px-4 md:px-8 xl:px-12">

@@ -140,7 +140,7 @@ export default function Navbar({ onThemeToggle, currentTheme }: NavbarProps) {
             <li className="pt-2">
               <Link
                 to="/contact"
-                className="block text-center bg-az-primary text-az-inverse font-body font-medium rounded-pill px-6 py-3 text-sm hover:shadow-btn active:scale-95 transition-all duration-200"
+                className="block text-center bg-az-primary text-az-inverse font-body font-medium rounded-pill px-4 py-3 text-sm hover:shadow-btn active:scale-95 transition-all duration-200"
               >
                 Get Started
               </Link>

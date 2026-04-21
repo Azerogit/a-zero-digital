@@ -98,11 +98,11 @@ export default function ServicesPage() {
 
       <section
         ref={ref as React.RefObject<HTMLElement>}
-        className="py-24"
+        className="py-12 md:py-24"
         aria-label="Service details"
       >
         <div className="max-w-container mx-auto px-4 md:px-8 xl:px-12">
-          <div className="flex flex-col gap-16">
+          <div className="flex flex-col gap-8 md:gap-16">
             {services.map((svc, i) => {
               const Icon = svc.icon
               return (

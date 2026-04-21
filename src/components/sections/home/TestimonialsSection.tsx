@@ -24,7 +24,7 @@ export default function TestimonialsSection() {
     <section
       id="testimonials"
       ref={ref as React.RefObject<HTMLElement>}
-      className="py-24 bg-az-bg-off border-b border-az-border/20"
+      className="py-16 md:py-24 bg-az-bg-off border-b border-az-border/20"
       aria-labelledby="testimonials-heading"
     >
       <div className="max-w-container mx-auto px-4 md:px-8 xl:px-12">

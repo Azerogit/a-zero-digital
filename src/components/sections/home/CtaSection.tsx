@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react'
 export default function CtaSection() {
   return (
     <section
-      className="py-24 bg-az-primary"
+      className="py-16 md:py-24 bg-az-primary"
       aria-label="Call to action"
     >
       <div className="max-w-container mx-auto px-4 md:px-8 xl:px-12 text-center">

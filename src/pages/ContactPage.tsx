@@ -242,9 +242,9 @@ export default function ContactPage() {
         subtitle="Tell us about your business, goals, and challenges. We'll be in touch within one business day."
       />
 
-      <section className="py-20" aria-label="Contact form and info">
+      <section className="py-12 md:py-20" aria-label="Contact form and info">
         <div className="max-w-container mx-auto px-4 md:px-8 xl:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
 
             {/* ── Form ── */}
             <div className="lg:col-span-2">

@@ -34,7 +34,7 @@ export default function ServicesPreview() {
     <section
       id="services"
       ref={ref as React.RefObject<HTMLElement>}
-      className="py-24 border-b border-az-border/20"
+      className="py-16 md:py-24 border-b border-az-border/20"
       aria-labelledby="services-heading"
     >
       <div className="max-w-container mx-auto px-4 md:px-8 xl:px-12">

@@ -21,7 +21,7 @@ export default function Footer() {
       <div className="max-w-container mx-auto px-4 md:px-8 xl:px-12">
 
         {/* Top row */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 py-12">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 py-8 md:py-12">
           {/* Brand */}
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center hover:opacity-80 transition-opacity duration-150" aria-label="A-zero Digital">

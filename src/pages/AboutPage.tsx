@@ -93,11 +93,11 @@ export default function AboutPage() {
 
       <section
         ref={ref as React.RefObject<HTMLElement>}
-        className="py-24 border-b border-az-border/20"
+        className="py-12 md:py-24 border-b border-az-border/20"
         aria-label="Our story"
       >
         <div className="max-w-container mx-auto px-4 md:px-8 xl:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-start">
 
             <div className="reveal">
               <SectionLabel className="mb-4 block">Our Story</SectionLabel>
@@ -138,7 +138,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-24 bg-az-bg-off border-b border-az-border/20" aria-labelledby="values-heading">
+      <section className="py-12 md:py-24 bg-az-bg-off border-b border-az-border/20" aria-labelledby="values-heading">
         <div className="max-w-container mx-auto px-4 md:px-8 xl:px-12">
           <div className="text-center mb-16">
             <SectionLabel className="mb-3 block">What We Stand For</SectionLabel>

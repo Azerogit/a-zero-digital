@@ -95,7 +95,7 @@ export default function CaseStudiesPage() {
 
       <section
         ref={ref as React.RefObject<HTMLElement>}
-        className="py-24"
+        className="py-12 md:py-24"
         aria-label="Case study details"
       >
         <div className="max-w-container mx-auto px-4 md:px-8 xl:px-12">
