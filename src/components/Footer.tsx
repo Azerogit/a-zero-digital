@@ -25,8 +25,8 @@ export default function Footer() {
           {/* Brand */}
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center hover:opacity-80 transition-opacity duration-150" aria-label="A-zero Digital">
-              <img src="/a-zero-logo-light-mode.svg" alt="A-zero Digital" className="h-9 w-auto dark:hidden" width={73} height={90} />
-              <img src="/a-zero-logo-dark-mode.svg" alt="A-zero Digital" className="h-9 w-auto hidden dark:block" width={73} height={90} />
+              <img src={`${import.meta.env.BASE_URL}a-zero-logo-light-mode.svg`} alt="A-zero Digital" className="h-9 w-auto dark:hidden" width={73} height={90} />
+              <img src={`${import.meta.env.BASE_URL}a-zero-logo-dark-mode.svg`} alt="A-zero Digital" className="h-9 w-auto hidden dark:block" width={73} height={90} />
             </Link>
             <p className="font-body text-xs text-az-muted mt-2 max-w-[200px] leading-relaxed">
               AI-Powered Marketing &amp;<br />Data Science Consultancy

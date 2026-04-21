@@ -39,7 +39,7 @@ export default function Navbar({ onThemeToggle, currentTheme }: NavbarProps) {
           {/* Logo */}
           <Link to="/" className="flex items-center" aria-label="A-zero Digital — Home">
             <img
-              src={currentTheme === 'dark' ? '/a-zero-logo-dark-mode.svg' : '/a-zero-logo-light-mode.svg'}
+              src={currentTheme === 'dark' ? `${import.meta.env.BASE_URL}a-zero-logo-dark-mode.svg` : `${import.meta.env.BASE_URL}a-zero-logo-light-mode.svg`}
               alt="A-zero Digital"
               className="h-14 w-auto transition-opacity duration-150 hover:opacity-80"
               width={73}
