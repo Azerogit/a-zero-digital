@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-SG">
   <head>
     <script>
       (function () {
-        var stored = localStorage.getItem('theme');
+        var stored = localStorage.getItem('az-theme');
         var theme = stored ? stored : 'dark';
         if (theme === 'dark') document.documentElement.classList.add('dark');
       })();
@@ -39,11 +39,12 @@
       content="Singapore's AI-driven marketing consultancy. We bridge advanced data science with measurable marketing ROI."
     />
 
-    <!-- Google Fonts -->
+    <!-- Fonts: Inter (body) + DM Mono (data labels) via Google Fonts -->
+    <!-- SF Pro Display loaded via system font stack — no external load needed -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Barlow:wght@400;500;600&family=Allerta+Stencil&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
   </head>

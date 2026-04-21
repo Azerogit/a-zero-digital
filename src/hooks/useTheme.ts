@@ -4,9 +4,8 @@ type Theme = 'light' | 'dark'
 
 export function useTheme() {
   const [theme, setTheme] = useState<Theme>(() => {
-    const stored = localStorage.getItem('theme') as Theme | null
+    const stored = localStorage.getItem('az-theme') as Theme | null
     if (stored) return stored
-    // No stored preference: always default to dark
     return 'dark'
   })
 
@@ -14,7 +13,7 @@ export function useTheme() {
     const root = document.documentElement
     if (theme === 'dark') root.classList.add('dark')
     else root.classList.remove('dark')
-    localStorage.setItem('theme', theme)
+    localStorage.setItem('az-theme', theme)
   }, [theme])
 
   const toggle = () => setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))

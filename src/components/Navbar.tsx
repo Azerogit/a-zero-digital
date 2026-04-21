@@ -1,23 +1,24 @@
 import { useEffect, useState } from 'react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Menu, X, Sun, Moon } from 'lucide-react'
 
 interface NavbarProps {
-  activeSection: string
   onThemeToggle: () => void
   currentTheme: 'light' | 'dark'
 }
 
 const navLinks = [
-  { label: 'Services', href: '#services' },
-  { label: 'Process', href: '#process' },
-  { label: 'About', href: '#about' },
-  { label: 'FAQ', href: '#faq' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Services',      to: '/services' },
+  { label: 'Case Studies',  to: '/case-studies' },
+  { label: 'Blog',          to: '/blog' },
+  { label: 'About',         to: '/about' },
+  { label: 'Contact',       to: '/contact' },
 ]
 
-export default function Navbar({ activeSection, onThemeToggle, currentTheme }: NavbarProps) {
-  const [scrolled, setScrolled] = useState(false)
+export default function Navbar({ onThemeToggle, currentTheme }: NavbarProps) {
+  const [scrolled, setScrolled]   = useState(false)
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const location = useLocation()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -25,87 +26,89 @@ export default function Navbar({ activeSection, onThemeToggle, currentTheme }: N
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const activeHref = `#${activeSection}`
+  useEffect(() => { setDrawerOpen(false) }, [location])
 
   return (
     <header
-      className={`sticky top-0 z-50 navbar-glass backdrop-blur-md border-b border-surface-border transition-shadow duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 navbar-glass backdrop-blur-md border-b border-az-border/20 transition-shadow duration-300 ${
         scrolled ? 'shadow-sm' : ''
       }`}
     >
-      <div className="max-w-container mx-auto px-4 md:px-8 xl:px-16">
-        <nav className="flex items-center justify-between h-16 md:h-20">
+      <div className="max-w-container mx-auto px-4 md:px-8 xl:px-12">
+        <nav className="flex items-center justify-between h-16 md:h-20" aria-label="Primary navigation">
           {/* Logo */}
-          <a href="#hero" className="flex items-center" aria-label="A-zero Digital home">
-            <span className="font-logo text-3xl font-normal text-text-muted leading-none">a</span>
-            <span className="font-logo text-3xl font-normal text-text-primary leading-none">0</span>
-          </a>
+          <Link to="/" className="flex items-center" aria-label="A-zero Digital — Home">
+            <img
+              src={currentTheme === 'dark' ? '/a-zero-logo-dark-mode.svg' : '/a-zero-logo-light-mode.svg'}
+              alt="A-zero Digital"
+              className="h-14 w-auto transition-opacity duration-150 hover:opacity-80"
+              width={73}
+              height={90}
+            />
+          </Link>
 
-          {/* Desktop nav links */}
+          {/* Desktop nav */}
           <ul className="hidden md:flex items-center gap-1" role="list">
-            {navLinks.map((link) => {
-              const isActive = activeHref === link.href
-              return (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className={`font-body text-base transition-colors duration-150 ${
+            {navLinks.map((link) => (
+              <li key={link.to}>
+                <NavLink
+                  to={link.to}
+                  className={({ isActive }) =>
+                    `font-body text-sm transition-colors duration-150 px-4 py-2 rounded-pill ${
                       isActive
-                        ? 'bg-surface-card border border-surface-border rounded-full px-5 py-2 text-text-primary'
-                        : 'px-5 py-2 text-text-secondary hover:text-text-primary'
-                    }`}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              )
-            })}
+                        ? 'bg-az-card text-az-primary font-medium'
+                        : 'text-az-secondary hover:text-az-primary'
+                    }`
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              </li>
+            ))}
           </ul>
 
-          {/* Desktop right controls */}
+          {/* Desktop right */}
           <div className="hidden md:flex items-center gap-3">
-            {/* Theme toggle */}
             <button
               onClick={onThemeToggle}
-              className="rounded-full p-2 bg-surface-card border border-surface-border hover:bg-surface-elevated transition-colors duration-200"
+              className="rounded-full p-2 bg-az-card border border-az-border/30 hover:bg-az-bg-off transition-colors duration-200"
               aria-label="Toggle theme"
             >
               {currentTheme === 'dark' ? (
-                <Sun className="w-5 h-5 text-text-primary" aria-hidden="true" />
+                <Sun className="w-4 h-4 text-az-primary" aria-hidden="true" />
               ) : (
-                <Moon className="w-5 h-5 text-text-primary" aria-hidden="true" />
+                <Moon className="w-4 h-4 text-az-primary" aria-hidden="true" />
               )}
             </button>
-
-            {/* CTA */}
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center bg-brand-blue text-text-inverse font-body font-medium rounded-pill px-6 py-3 text-sm hover:opacity-90 active:scale-95 transition-all duration-150"
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center bg-az-primary text-az-inverse font-body font-medium rounded-pill px-6 py-2.5 text-sm hover:shadow-btn hover:-translate-y-0.5 active:scale-95 transition-all duration-200"
             >
               Get Started
-            </a>
+            </Link>
           </div>
 
-          {/* Mobile: theme toggle + hamburger */}
+          {/* Mobile controls */}
           <div className="md:hidden flex items-center gap-2">
             <button
               onClick={onThemeToggle}
-              className="rounded-full p-2 bg-surface-card border border-surface-border hover:bg-surface-elevated transition-colors duration-200"
+              className="rounded-full p-2 bg-az-card border border-az-border/30"
               aria-label="Toggle theme"
             >
               {currentTheme === 'dark' ? (
-                <Sun className="w-5 h-5 text-text-primary" aria-hidden="true" />
+                <Sun className="w-4 h-4 text-az-primary" aria-hidden="true" />
               ) : (
-                <Moon className="w-5 h-5 text-text-primary" aria-hidden="true" />
+                <Moon className="w-4 h-4 text-az-primary" aria-hidden="true" />
               )}
             </button>
             <button
-              className="flex items-center justify-center w-10 h-10 text-text-primary"
+              className="flex items-center justify-center w-10 h-10 text-az-primary"
               onClick={() => setDrawerOpen((v) => !v)}
               aria-label={drawerOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={drawerOpen}
+              aria-controls="mobile-drawer"
             >
-              {drawerOpen ? <X size={24} /> : <Menu size={24} />}
+              {drawerOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </nav>
@@ -113,34 +116,34 @@ export default function Navbar({ activeSection, onThemeToggle, currentTheme }: N
 
       {/* Mobile drawer */}
       {drawerOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 drawer-glass backdrop-blur-md border-b border-surface-border shadow-sm">
+        <div
+          id="mobile-drawer"
+          className="md:hidden absolute top-full left-0 right-0 drawer-glass backdrop-blur-md border-b border-az-border/20 shadow-sm"
+        >
           <ul className="flex flex-col px-4 py-4 gap-1" role="list">
-            {navLinks.map((link) => {
-              const isActive = activeHref === link.href
-              return (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={() => setDrawerOpen(false)}
-                    className={`block font-body text-base py-3 px-4 rounded-input transition-colors duration-150 ${
+            {navLinks.map((link) => (
+              <li key={link.to}>
+                <NavLink
+                  to={link.to}
+                  className={({ isActive }) =>
+                    `block font-body text-base py-3 px-4 rounded-input transition-colors duration-150 ${
                       isActive
-                        ? 'bg-surface-card text-text-primary font-medium'
-                        : 'text-text-secondary hover:text-text-primary hover:bg-surface-muted'
-                    }`}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              )
-            })}
+                        ? 'bg-az-card text-az-primary font-medium'
+                        : 'text-az-secondary hover:text-az-primary hover:bg-az-card'
+                    }`
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              </li>
+            ))}
             <li className="pt-2">
-              <a
-                href="#contact"
-                onClick={() => setDrawerOpen(false)}
-                className="block text-center bg-brand-blue text-text-inverse font-body font-medium rounded-pill px-6 py-3 text-sm hover:opacity-90 active:scale-95 transition-all duration-150"
+              <Link
+                to="/contact"
+                className="block text-center bg-az-primary text-az-inverse font-body font-medium rounded-pill px-6 py-3 text-sm hover:shadow-btn active:scale-95 transition-all duration-200"
               >
                 Get Started
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

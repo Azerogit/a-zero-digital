@@ -1,65 +1,48 @@
-import { Helmet } from 'react-helmet-async'
-import { useScrollSpy } from './hooks/useScrollSpy'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 import { useTheme } from './hooks/useTheme'
 import Navbar from './components/Navbar'
-import HeroSection from './components/HeroSection'
-import ServicesSection from './components/ServicesSection'
-import ProcessSection from './components/ProcessSection'
-import AboutSection from './components/AboutSection'
-import FaqSection from './components/FaqSection'
-import ContactSection from './components/ContactSection'
-import CtaSection from './components/CtaSection'
 import Footer from './components/Footer'
+import HomePage from './pages/HomePage'
+import ServicesPage from './pages/ServicesPage'
+import CaseStudiesPage from './pages/CaseStudiesPage'
+import BlogPage from './pages/BlogPage'
+import BlogPostPage from './pages/BlogPostPage'
+import AboutPage from './pages/AboutPage'
+import ContactPage from './pages/ContactPage'
 
-const SECTION_IDS = ['hero', 'services', 'process', 'about', 'faq', 'contact']
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  return null
+}
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  name: 'A-zero Digital Pte Ltd',
-  description:
-    'AI-powered marketing consultancy bridging advanced data science with measurable marketing ROI through machine learning, predictive analytics, and intelligent automation.',
-  address: {
-    '@type': 'PostalAddress',
-    addressCountry: 'SG',
-    addressLocality: 'Singapore',
-  },
-  url: 'https://a-zero.co',
-  email: 'hello@a-zero.co',
-  areaServed: 'Southeast Asia',
-  knowsAbout: [
-    'Artificial Intelligence',
-    'Machine Learning',
-    'Digital Marketing',
-    'Data Science',
-    'Marketing Analytics',
-    'Marketing Automation',
-  ],
+function Layout() {
+  const { theme, toggle } = useTheme()
+  return (
+    <>
+      <Navbar onThemeToggle={toggle} currentTheme={theme} />
+      <main>
+        <Routes>
+          <Route path="/"             element={<HomePage />} />
+          <Route path="/services"     element={<ServicesPage />} />
+          <Route path="/case-studies" element={<CaseStudiesPage />} />
+          <Route path="/blog"         element={<BlogPage />} />
+          <Route path="/blog/:id"     element={<BlogPostPage />} />
+          <Route path="/about"        element={<AboutPage />} />
+          <Route path="/contact"      element={<ContactPage />} />
+        </Routes>
+      </main>
+      <Footer />
+    </>
+  )
 }
 
 export default function App() {
-  const activeSection = useScrollSpy(SECTION_IDS)
-  const { theme, toggle } = useTheme()
-
   return (
-    <>
-      <Helmet>
-        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-      </Helmet>
-
-      <Navbar activeSection={activeSection} onThemeToggle={toggle} currentTheme={theme} />
-
-      <main>
-        <HeroSection />
-        <ServicesSection />
-        <ProcessSection />
-        <AboutSection />
-        <FaqSection />
-        <ContactSection />
-        <CtaSection />
-      </main>
-
-      <Footer />
-    </>
+    <BrowserRouter>
+      <ScrollToTop />
+      <Layout />
+    </BrowserRouter>
   )
 }

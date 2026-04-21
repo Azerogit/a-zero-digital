@@ -1,31 +1,25 @@
 /* ── LIGHT MODE (default) ── */
 :root {
-  --color-surface-base:     #FFFFFF;
-  --color-surface-card:     #F7F7F7;
-  --color-surface-elevated: #F0F0F0;
-  --color-surface-border:   #E6E6E6;
-  --color-surface-muted:    #FAFAFA;
-
-  --color-text-primary:   #0F0F0F;
-  --color-text-secondary: #4C4C4D;
-  --color-text-muted:     #808080;
-  --color-text-disabled:  #666666;
-  --color-text-inverse:   #FFFFFF;
+  --az-bg:        #FFFFFF;
+  --az-bg-off:    #F8F9FB;
+  --az-card:      #F2F2F2;
+  --az-border:    #444444;
+  --az-muted:     #666666;   /* 5.7:1 on white — WCAG AA ✓ */
+  --az-secondary: #444444;   /* 9.7:1 on white — WCAG AAA ✓ */
+  --az-primary:   #121212;
+  --az-inverse:   #FFFFFF;
 }
 
 /* ── DARK MODE ── */
 .dark {
-  --color-surface-base:     #0F0F0F;
-  --color-surface-card:     #1A1A1A;
-  --color-surface-elevated: #1F1F1F;
-  --color-surface-border:   #262626;
-  --color-surface-muted:    #1A1A1A;
-
-  --color-text-primary:   #FFFFFF;
-  --color-text-secondary: #E6E6E6;
-  --color-text-muted:     #8C8C8C;
-  --color-text-disabled:  #666666;
-  --color-text-inverse:   #0F0F0F;
+  --az-bg:        #121212;
+  --az-bg-off:    #181818;
+  --az-card:      #1E1E1E;
+  --az-border:    #444444;
+  --az-muted:     #888888;
+  --az-secondary: #B0B0B0;
+  --az-primary:   #E0E0E0;
+  --az-inverse:   #121212;
 }
 
 @tailwind base;
@@ -35,12 +29,13 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    scroll-padding-top: 80px;
   }
 
   body {
-    @apply font-body text-text-primary bg-surface-base antialiased;
+    @apply font-body text-az-primary bg-az-bg antialiased;
     margin: 0;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 
   *,
@@ -48,55 +43,56 @@
   *::after {
     box-sizing: border-box;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
 }
 
-/* ─── Glass / fade utilities (CSS vars can't use Tailwind opacity modifier) ── */
-
+/* ── Navbar glass ── */
 .navbar-glass {
-  background-color: color-mix(in srgb, var(--color-surface-base) 80%, transparent);
+  background-color: color-mix(in srgb, var(--az-bg) 85%, transparent);
 }
 
 .drawer-glass {
-  background-color: color-mix(in srgb, var(--color-surface-base) 95%, transparent);
+  background-color: color-mix(in srgb, var(--az-bg) 97%, transparent);
 }
 
-.hero-fade {
-  background: linear-gradient(to bottom, transparent, var(--color-surface-base));
+/* ── Hero beam ── */
+@keyframes beam-shimmer {
+  0%   { transform: translateX(-120%) skewX(-15deg); }
+  100% { transform: translateX(220%) skewX(-15deg); }
 }
 
-/* ─── Keyframe animations ──────────────────────────────── */
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.hero-beam {
+  position: absolute;
+  width: 35%;
+  height: 200%;
+  top: -50%;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.05) 40%,
+    rgba(255,255,255,0.10) 50%,
+    rgba(255,255,255,0.05) 60%,
+    transparent 100%
+  );
+  animation: beam-shimmer 7s ease-in-out infinite;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.dark .hero-beam {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.04) 40%,
+    rgba(255,255,255,0.08) 50%,
+    rgba(255,255,255,0.04) 60%,
+    transparent 100%
+  );
 }
 
-@keyframes columnReveal {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* ─── Scroll-reveal utility ──────────────────────────────── */
-
+/* ── Scroll-reveal utility ── */
 .reveal {
   opacity: 0;
   transform: translateY(20px);
@@ -108,8 +104,18 @@
   transform: translateY(0);
 }
 
-/* ─── Dual-range slider ──────────────────────────────── */
+/* ── Staggered reveal delays ── */
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
 
+/* ── Hero bottom fade ── */
+.hero-fade {
+  background: linear-gradient(to bottom, transparent, var(--az-bg));
+}
+
+/* ── Dual-range slider ── */
 .range-slider {
   -webkit-appearance: none;
   appearance: none;
@@ -127,31 +133,37 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #0052FF;
-  border: 3px solid var(--color-surface-base);
-  box-shadow: 0 0 0 1px #0052FF, 0 2px 6px rgba(0, 82, 255, 0.3);
+  background: var(--az-primary);
+  border: 3px solid var(--az-bg);
+  box-shadow: 0 0 0 1px var(--az-border);
   cursor: pointer;
   pointer-events: all;
   transition: box-shadow 0.15s ease;
 }
 
 .range-slider::-webkit-slider-thumb:hover {
-  box-shadow: 0 0 0 1px #0052FF, 0 4px 12px rgba(0, 82, 255, 0.4);
+  box-shadow: 0 0 0 2px var(--az-primary);
 }
 
 .range-slider::-moz-range-thumb {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #0052FF;
-  border: 3px solid var(--color-surface-base);
-  box-shadow: 0 0 0 1px #0052FF, 0 2px 6px rgba(0, 82, 255, 0.3);
+  background: var(--az-primary);
+  border: 3px solid var(--az-bg);
+  box-shadow: 0 0 0 1px var(--az-border);
   cursor: pointer;
   pointer-events: all;
 }
 
-/* ─── Custom checkbox ──────────────────────────────── */
-
+/* ── Custom checkbox ── */
 .checkbox-custom {
-  accent-color: #0052FF;
+  accent-color: var(--az-primary);
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-beam { animation: none; }
+  .reveal { transition: none; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
