@@ -4,7 +4,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-[85vh] md:min-h-[80vh] lg:min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 md:px-8 xl:px-12 pt-16 md:pt-20"
+      className="relative min-h-[85vh] md:min-h-[80vh] lg:min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 md:px-8 xl:px-12 pt-24 md:pt-20"
       aria-label="Hero"
     >
       {/* Diagonal beam — monochromatic shimmer motif */}
