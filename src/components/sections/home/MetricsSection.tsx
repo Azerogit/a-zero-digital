@@ -22,7 +22,7 @@ function Stat({
   return (
     <div
       ref={ref as React.RefObject<HTMLDivElement>}
-      className="flex flex-col items-center text-center px-8 py-10 reveal"
+      className="flex flex-col items-center text-center px-4 md:px-8 py-8 md:py-10 reveal"
     >
       <span className="font-mono font-medium text-5xl md:text-6xl text-az-primary leading-none mb-3">
         {prefix}{display}{suffix}
