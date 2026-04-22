@@ -30,10 +30,10 @@ export default function CtaSection() {
             <ArrowRight size={16} aria-hidden="true" />
           </Link>
           <Link
-            to="/case-studies"
+            to="/services"
             className="inline-flex items-center gap-2 bg-transparent border border-az-inverse/30 text-az-inverse font-body font-medium rounded-pill px-8 py-3.5 text-base hover:bg-az-inverse/10 active:scale-95 transition-all duration-200"
           >
-            See Our Work
+            Explore Our Services
           </Link>
         </div>
 
