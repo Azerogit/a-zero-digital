@@ -1,4 +1,5 @@
 import { type ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 
 type Variant = 'primary' | 'secondary' | 'ghost'
 
@@ -38,15 +39,22 @@ export default function Button({
   const cls = `${base} ${variants[variant]} ${className}`
 
   if (href) {
+    if (external || href.startsWith('http') || href.startsWith('mailto:')) {
+      return (
+        <a
+          href={href}
+          className={cls}
+          target={external ? '_blank' : undefined}
+          rel={external ? 'noopener noreferrer' : undefined}
+        >
+          {children}
+        </a>
+      )
+    }
     return (
-      <a
-        href={href}
-        className={cls}
-        target={external ? '_blank' : undefined}
-        rel={external ? 'noopener noreferrer' : undefined}
-      >
+      <Link to={href} className={cls}>
         {children}
-      </a>
+      </Link>
     )
   }
 
